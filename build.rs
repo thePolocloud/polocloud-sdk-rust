@@ -2,7 +2,7 @@ use std::{env, fs};
 use std::path::{Path, PathBuf};
 
 fn main() {
-    let path = Path::new("../../proto/src/main/proto/polocloud/v1/proto/");
+    let path = Path::new("/polocloud-proto/src/proto/v1");
 
     let paths = fs::read_dir(path).unwrap();
 
@@ -24,7 +24,7 @@ fn build_protos(paths: &[String]) {
         .type_attribute("GroupType", "#[derive(serde::Deserialize)]")
         .compile_protos(
             paths,
-            &["../../proto/src/main/proto".to_string()],
+            &["/polocloud-proto/src/proto/v1".to_string()],
         )
         .unwrap();
 }

@@ -1,0 +1,3 @@
+[submodule "polocloud-proto"]
+	path = polocloud-proto
+	url = https://github.com/thePolocloud/polocloud-proto
