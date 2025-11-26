@@ -2,14 +2,14 @@ use std::{env, fs};
 use std::path::{Path, PathBuf};
 
 fn main() {
-    let path = Path::new("/polocloud-proto/src/proto/v1");
+    let path = Path::new("polocloud-proto/src/proto/v1/");
 
     let paths = fs::read_dir(path).unwrap();
 
     let path_strs: Vec<String> = paths
         .filter_map(|entry| entry.ok())
         .map(|entry| entry.path())
-        .filter(|path| path.extension().map_or(false, |ext| ext == "proto"))
+        .filter(|path| path.extension().is_some_and(|ext| ext == "proto"))
         .map(|path| path.to_string_lossy().to_string())
         .collect();
 
@@ -24,7 +24,7 @@ fn build_protos(paths: &[String]) {
         .type_attribute("GroupType", "#[derive(serde::Deserialize)]")
         .compile_protos(
             paths,
-            &["/polocloud-proto/src/proto/v1".to_string()],
+            &["polocloud-proto/src/proto".to_string()],
         )
         .unwrap();
 }
