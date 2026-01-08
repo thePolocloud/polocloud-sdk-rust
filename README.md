@@ -21,7 +21,7 @@ edition = "2024"
 
 [dependencies]
 polocloud-sdk = {git = "https://github.com/thePolocloud/polocloud-sdk-rust.git"}
-tokio = "1.48.0"
+tokio = "1.49.0"
 
 ```
 File: ``main.rs``
