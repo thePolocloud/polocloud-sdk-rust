@@ -4,15 +4,25 @@ use crate::polocloud::PlayerSnapshot;
 pub struct PolocloudPlayer {
     name: String,
     uuid: String,
-    curren_service_name: String,
+    current_server_name: String,
+    current_proxy_name: String,
+    first_time_joined: i64,
 }
 
 impl PolocloudPlayer {
-    pub fn new(name: String, uuid: String, curren_service_name: String) -> Self {
+    pub fn new(
+        name: String,
+        uuid: String,
+        current_server_name: String,
+        current_proxy_name: String,
+        first_time_joined: i64,
+    ) -> Self {
         Self {
             name,
             uuid,
-            curren_service_name,
+            current_server_name,
+            current_proxy_name,
+            first_time_joined,
         }
     }
 
@@ -24,15 +34,25 @@ impl PolocloudPlayer {
         &self.uuid
     }
 
-    pub fn curren_service_name(&self) -> &str {
-        &self.curren_service_name
+    pub fn current_server_name(&self) -> &str {
+        &self.current_server_name
+    }
+
+    pub fn current_proxy_name(&self) -> &str {
+        &self.current_proxy_name
+    }
+
+    pub fn first_time_joined(&self) -> i64 {
+        self.first_time_joined
     }
 
     pub fn from_snapshot(snapshot: PlayerSnapshot) -> Self {
         Self {
             name: snapshot.name,
             uuid: snapshot.unique_id,
-            curren_service_name: snapshot.current_service_name,
+            current_server_name: snapshot.current_server_name,
+            current_proxy_name: snapshot.current_proxy_name,
+            first_time_joined: snapshot.first_time_joined,
         }
     }
 }
